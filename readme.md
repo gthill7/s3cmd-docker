@@ -14,7 +14,7 @@ docker run --rm \
   --env cmd=sync-local-to-s3 \
   --env SRC_S3=${BUCKET} \
   -v ${LOCAL_FILE}:/opt/src \
-  gthill77/s3cmd
+  gthill77/s3cmd-docker
 ```
 
 ## Download from S3 to Local
@@ -27,5 +27,5 @@ docker run --rm \
   --env cmd=sync-s3-to-local \
   --env SRC_S3=${BUCKET} \
   -v ${LOCAL_PATH}:/opt/dest \
-  gthill77/s3cmd
+  gthill77/s3cmd-docker
 ```
