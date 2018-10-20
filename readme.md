@@ -1,5 +1,5 @@
 ## Credits
-This repo is essentially a copy of [hochzehn/s3cmd-docker](https://github.com/hochzehn/s3cmd-docker) and [sekka1/docker-s3cmd](https://github.com/sekka1/docker-s3cmd), but allows you to specifiy a host other than the default AWS host (e.g DigitalOcean Spaces which is S3 compatible).
+This repo is essentially a copy of [hochzehn/s3cmd-docker](https://github.com/hochzehn/s3cmd-docker) and [sekka1/docker-s3cmd](https://github.com/sekka1/docker-s3cmd), but allows you to specify a host other than the default AWS host (e.g DigitalOcean Spaces which is S3 compatible).
 
 ## Description
 Docker container with s3cmd support. Pull and run this image in order to upload/download between S3 host and local machine.
