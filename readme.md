@@ -12,7 +12,7 @@ docker run --rm \
   --env s3_host_base=${HOST} \
   --env s3_host_bucket_template=${HOST_BUCKET_TEMPLATE} \
   --env cmd=sync-local-to-s3 \
-  --env SRC_S3=${BUCKET} \
+  --env DEST_S3=${BUCKET} \
   -v ${LOCAL_FILE}:/opt/src \
   gthill77/s3cmd-docker
 ```
