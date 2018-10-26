@@ -51,7 +51,9 @@ if [ -n "${cmd}" ]; then
   # sync-local-to-s3 - copy from local to s3
   #
   if [ "${cmd}" = "sync-local-to-s3" ]; then
-      ${S3CMD_PATH} sync $* /opt/src/ ${DEST_S3}
+      cd /opt/src
+      FILE=$(ls)
+      ${S3CMD_PATH} put $* /opt/src/$FILE ${DEST_S3}
   fi
 else
   ${S3CMD_PATH} $*
