@@ -19,6 +19,12 @@ if [ -z "${secret_key}" ]; then
     exit 1
 fi
 
+ITER=true
+if [ -z "${interval}" ]; then
+    echo "INFO: No interval was defined. If you would like to run this as a loop please specify --env interval={SECONDS}"
+    ITER=false
+fi
+
 #
 # Set user provided key and secret in .s3cfg file
 #
@@ -37,6 +43,7 @@ if [ "${s3_host_bucket_template}" != "" ]; then
   echo "host_bucket = ${s3_host_bucket_template}" >> "$S3CMD_CONFIG"
 fi
 
+actions() {
 # Check whether to run a pre-defined command
 if [ -n "${cmd}" ]; then
   #
@@ -58,6 +65,17 @@ if [ -n "${cmd}" ]; then
 else
   ${S3CMD_PATH} $*
 fi
+
+}
+
+# Perform action at least once before while loop.
+actions
+# Loops forever at the user defined interval.
+while $ITER
+do
+    actions
+    sleep ${interval}
+done
 
 #
 # Finished operations
