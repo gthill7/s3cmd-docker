@@ -29,3 +29,23 @@ docker run --rm \
   -v ${LOCAL_PATH}:/opt/dest \
   gthill77/s3cmd-docker
 ```
+
+## Optional args
+* If you want this to run periodically at a specified interval, you can do so by adding to env vars:
+
+    * _NOTE_: If no interval is given then it will only execute once and exit.
+```bash
+--env interval=${SECONDS}
+```
+
+## Examples of env vars
+* AWS
+```bash
+HOST = s3.amazonaws.com
+HOST_BUCKET_TEMPLATE = "%(bucket)s.s3.amazonaws.com"
+```
+* DigitalOcean
+```bash
+HOST = nyc3.digitaloceanspaces.com
+HOST_BUCKET_TEMPLATE = "%(bucket)s.nyc3.digitaloceanspaces.com"
+```
