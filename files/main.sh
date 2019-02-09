@@ -8,15 +8,24 @@ S3CMD_CONFIG=/root/.s3cfg
 
 #
 # Check for required parameters
-#
+
 if [ -z "${access_key}" ]; then
-    echo "ERROR: The environment variable key is not set."
-    exit 1
+    echo "WARNING: The environment variable key was not passed. If not configured thru IAM, this will fail..."
+else
+    #
+    # Set user provided key and secret in .s3cfg file
+    #
+    echo "" >> "$S3CMD_CONFIG"
+    echo "access_key=${access_key}" >> "$S3CMD_CONFIG"
 fi
 
 if [ -z "${secret_key}" ]; then
-    echo "ERROR: The environment variable secret is not set."
-    exit 1
+    echo "WARNING: The environment variable secret was not passed. If not configured thru IAM, this will fail..."
+else
+    #
+    # Set user provided key and secret in .s3cfg file
+    #
+    echo "secret_key=${secret_key}" >> "$S3CMD_CONFIG"
 fi
 
 ITER=true
@@ -24,13 +33,6 @@ if [ -z "${interval}" ]; then
     echo "INFO: No interval was defined. If you would like to run this as a loop please specify --env interval={SECONDS}"
     ITER=false
 fi
-
-#
-# Set user provided key and secret in .s3cfg file
-#
-echo "" >> "$S3CMD_CONFIG"
-echo "access_key=${access_key}" >> "$S3CMD_CONFIG"
-echo "secret_key=${secret_key}" >> "$S3CMD_CONFIG"
 
 #
 # Add region base host if it exist in the env vars
